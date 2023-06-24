@@ -1,0 +1,12 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: calc(1728px - 70px*2);
+  margin: 0 auto 0;
+  height: 81px;
+  padding:0 70px 0;
+  justify-content: space-between;
+  font-family: Inter;
+  background-color: #303048;
+}

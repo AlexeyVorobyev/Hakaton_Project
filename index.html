@@ -12,34 +12,69 @@
   <meta property="og:url" content="">
   <meta property="og:image" content="">
 
-  <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
 
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/index/index.css">
   <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
   <header class="header">
-
+    <div class="logo">
+      <h1 class="logo__text">GRADVINA</h1>
+    </div>
+    <nav class="navigation">
+      <div class="navigation__item">
+        <a class="navigation__link navigation__link_active" href="index.html">ГЛАВНАЯ</a>
+      </div>
+      <div class="navigation__item">
+        <a class="navigation__link" href="info.html">ИНФОРМАЦИЯ</a>
+      </div>
+      <div class="navigation__item">
+        <a class="navigation__link" href="company.html">О КОМПАНИИ</a>
+      </div>
+      <div class="navigation__item">
+        <a class="navigation__link" href="contacts.html">КОНТАКТЫ</a>
+      </div>
+      <div class="navigation__item">
+        <a class="navigation__link" href="cabinet.html">ЛИЧНЫЙ КАБИНЕТ</a>
+      </div>
+    </nav>
   </header>
   <section class="section-1">
-    <div id="map" style="width: 600px; height: 400px"></div>
-    <div class="button__container">
-      <button class="button" id="button1"><p>Поля</p></button>
-      <button class="button" id="button2"><p>Участки</p></button>
-      <button class="button" id="button3"><p>Тест Сервера</p></button>
+    <section class="section-popup hidden">
+      <div class="popup">
+        <div class="popup__close"><img class="popup__closeImg" src="" alt="закр."></div>
+        <h1 class="popup__title" id="popup__titleText">Участок:</h1>
+        <div class="list">
+          <p class="list__elem" id="lst__first">первое:</p>
+          <p class="list__elem" id="lst__second">второе:</p>
+          <p class="list__elem" id="lst__third">третье:</p>
+        </div>
+        <button class="popup__button"><p class="popup__buttonText">ПОДРОБНЕЕ</p></button>
+      </div>
+    </section>
+    <div class="section-1__container">
+      <h2 class="section-1__paragraph">ОТОБРАЗИТЬ:</h2>
+      <div class="button__container">
+        <button class="button" id="button1"><p class="button__text">ПОЛЯ</p></button>
+        <button class="button" id="button2"><p class="button__text">УЧАСТКИ</p></button>
+      </div>
     </div>
+    <div id="map" class="section-1__map"></div>
   </section>
+  <footer class="footer">
+
+  </footer>
 
   <script src="js/vendor/modernizr-3.11.2.min.js"></script>
   <script src="js/JQuery.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/mapTest.js"></script>
+  <script src="js/index.js"></script>
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
