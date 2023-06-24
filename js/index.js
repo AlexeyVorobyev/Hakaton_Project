@@ -36,7 +36,13 @@ function start () {
 
   $("#buttonClosePopup").on("click", function () {
     $(".section-popup").addClass("hidden");
+    $("#popupButton").off("click",function() {
+      const mail = id;
+      var nw = window.open('info.html');
+      nw.mail = mail;
+    })
   })
+
 };
 
 // функция отрисовки полей, запрос в бд
@@ -45,7 +51,7 @@ function drawFields(map) {
 
   request = $.ajax({
     type:'Get',
-    url:'http://91.223.199.62:8093/api/fields'
+    url:'http://91.223.199.62:8093/api/fields/list'
   })
 
   request.done(function (response,textStatus,jqXHR) {
@@ -88,7 +94,7 @@ function drawRegions(map) {
 
   request = $.ajax({
     type:'Get',
-    url:'http://91.223.199.62:8093/api/fields'
+    url:'http://91.223.199.62:8093/api/fields/list'
   })
 
   request.done(function (response,textStatus,jqXHR) {
@@ -124,18 +130,6 @@ function drawRegions(map) {
   })
 };
 
-// генерация рандомного цвета, удалить!!!!!!!!!!!!!!!!!!!!!!
-
-const hexDecimalArr = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-function calculateRandomColor() {
-  let resultColor = '#';
-  for (let i = 0; i < 6;i++) resultColor+=hexDecimalArr[getRandomInt(16)];
-  return resultColor;
-}
-
 function showPopup(id) {
   const popup = $(".section-popup");
   popup.removeClass("hidden");
@@ -155,4 +149,11 @@ function showPopup(id) {
   request.fail(function (textStatus,jqXHR,errorThrown) {
     console.log(errorThrown);
   })
+
+  $("#popupButton").on("click",function() {
+    const mail = id;
+    var nw = window.open('info.html');
+    nw.mail = mail;
+  })
 }
+

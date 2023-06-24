@@ -1,0 +1,90 @@
+.section-1 {
+  padding: 60px 117px 60px;
+  font-family: Inter, sans-serif;
+  display: flex;
+  gap: 25px;
+  flex-direction: column;
+}
+
+.list__elem {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.regionCard__title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 75px;
+  text-decoration: underline;
+}
+
+.regionCard__wrapper {
+  display: grid;
+  gap:70px;
+  grid-template-columns: repeat(3,1fr);
+  margin-top: 25px;
+}
+
+.regionCard {
+  position: relative;
+  padding: 15px;
+  background-color: #CACACB;
+  border: 3px #555555 solid;
+  border-radius: 10px;
+  margin-top: 75px;
+}
+
+.regionCard__imageContainer {
+  position: absolute;
+  top:-75px;
+  left:calc(50% - 75px);
+  width:150px;
+  height:150px;
+  background-color: cornflowerblue;
+  border-radius: 30px;
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.regionCard__image {
+  width: inherit;
+  height: inherit;
+}
+
+
+.field__button {
+  border-radius: 10px;
+  border: 3px #555555 solid;
+  background-color: #999999;
+  padding:10px;
+}
+
+.list__button:nth-child(2) {
+  margin-top: 10px;
+}
+
+.list__button {
+  width: 75%;
+  display: flex;
+  border-radius: 10px;
+  border: 3px #555555 solid;
+  background-color: #999999;
+  justify-content: center;
+  align-content: end;
+  margin:10px auto;
+}
+
+
+.list__button-text {
+  line-height: 1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.chosen {
+  background-color: #303048;
+}
