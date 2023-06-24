@@ -110,7 +110,8 @@ $(document).ready(function () {
       //res.children("#lst__fifth")....;
       //TODO РАЗРАБОТАТЬ POPUP ДЛЯ РАБОТНИКИ И ИСТОРИЯ ДЕЙСТВИЙ
 
-      res.children("#lst__fifth").on('click', showPopup.bind(this,response.id,response.manualWorks));
+      res.children("#lst__fourth").on('click', showPopupWorkers.bind(this,response.id));
+      res.children("#lst__fifth").on('click', showPopupHistory.bind(this,response.id,response.manualWorks));
 
       if (id == checkId) {
         res.addClass("chosen");
@@ -129,16 +130,23 @@ $(document).ready(function () {
 
   $("#buttonClosePopup").on("click", function () {
     $(".section-popup").addClass("hidden");
-    $(".list").children(".added").remove();
+    $(".list").children().remove();
   })
-  function showPopup(id, manualWorks) {
+  function showPopupHistory(id, manualWorks) {
     const popup = $(".section-popup");
     popup.removeClass("hidden");
     $("#popup__titleText").text("Участок: " + id);
 
+    const header = $('<div class="list__elemPopup list__elemPopup_history">\n' +
+      '          <div class="list__subElem"><p class="list__subElemText workStage">СТАДИЯ РАБОТ</p></div>\n' +
+      '          <div class="list__subElem"><p class="list__subElemText date">ДАТА</p></div>\n' +
+      '          <div class="list__subElem"><p class="list__subElemText note">ПРИМЕЧАНИЯ</p></div>\n' +
+      '        </div>')
+    $(".list").append(header)
+
     for (let i = 0; i < manualWorks.length;i++) {
       console.log(manualWorks)
-      const res = $('<div class="list__elemPopup added">\n' +
+      const res = $('<div class="list__elemPopup list__elemPopup_history added">\n' +
         '          <div class="list__subElem workStage"><p class="list__subElemText workStage"></p></div>\n' +
         '          <div class="list__subElem date"><p class="list__subElemText date"></p></div>\n' +
         '          <div class="list__subElem note"><p class="list__subElemText note"></p></div>\n' +
@@ -149,5 +157,55 @@ $(document).ready(function () {
 
       $(".list").append(res)
     }
+  }
+
+  function showPopupWorkers(id) {
+    const popup = $(".section-popup");
+    popup.removeClass("hidden");
+    $("#popup__titleText").text("Участок: " + id);
+
+    const header = $('<div class="list__elemPopup list__elemPopup_workers">\n' +
+      '          <div class="list__subElem"><p class="list__subElemText name">ПОЛНОЕ ИМЯ</p></div>\n' +
+      '          <div class="list__subElem"><p class="list__subElemText phone">ТЕЛЕФОН</p></div>\n' +
+      '          <div class="list__subElem"><p class="list__subElemText position">ДОЛЖНОСТЬ</p></div>\n' +
+      '          <div class="list__subElem"><p class="list__subElemText position"></p></div>\n' +
+      '        </div>')
+    $(".list").append(header);
+
+    request = $.ajax({
+      type:'Get',
+      url:'http://91.223.199.62:8093/api/users',
+    })
+
+    request.done(function (response,textStatus,jqXHR) {
+      for (let i = 0; i < response.length;i++) {
+        const res = $('<div class="list__elemPopup list__elemPopup_workers added">\n' +
+          '          <div class="list__subElem name"><p class="list__subElemText name"></p></div>\n' +
+          '          <div class="list__subElem phone"><p class="list__subElemText phone"></p></div>\n' +
+          '          <div class="list__subElem position"><p class="list__subElemText position"></p></div>\n' +
+          '          <div class="list__subElem"><button class="list__buttonPopup"><p class="list__subElemText">"ДОБАВИТЬ ПОРУЧЕНИЕ"</p></button></div>\n' +
+          '        </div>')
+        res.children(".name").children(".name").text(response[i].full_name);
+        res.children(".phone").children(".phone").text(response[i].phone);
+        res.children(".position").children(".position").text(response[i].roles[0].name);
+
+        const field = $('<div class="list__elemPopupTask hidden">\n' +
+          '          <textarea class="list__textArea"></textarea>\n' +
+          '          <button class="list__textAreaButton"><p class="list__textAreaButtonText">Отправить</p></button>\n' +
+          '        </div>')
+
+        res.children(".list__subElem").children(".list__buttonPopup").on('click',function () {
+          if (field.hasClass("hidden")) field.removeClass("hidden");
+          else field.addClass("hidden");
+        })
+
+        $(".list").append(res);
+        $(".list").append(field);
+        }
+    })
+
+    request.fail(function (textStatus,jqXHR,errorThrown) {
+      console.log(errorThrown);
+    })
   }
 })
