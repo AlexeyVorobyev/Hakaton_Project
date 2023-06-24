@@ -264,6 +264,6 @@ textarea {
 }
 
 body {
-  max-width: calc(1728px - 70px*2);
+  max-width: 1728px;
   margin: auto;
 }

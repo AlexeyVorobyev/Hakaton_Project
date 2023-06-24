@@ -33,6 +33,10 @@ function start () {
     });
     DG.then(drawRegions.bind(this,map));
   })
+
+  $("#buttonClosePopup").on("click", function () {
+    $(".section-popup").addClass("hidden");
+  })
 };
 
 // функция отрисовки полей, запрос в бд
@@ -52,9 +56,15 @@ function drawFields(map) {
       for (let j = 0; j < response[i].points.length;j++) {
         arr.push([response[i].points[j].lon,response[i].points[j].lat])
       }
-      DG.polygon(arr, {color: calculateRandomColor()})
+      DG.polygon(arr, {color: "blue"})
         .on('click', function() {
-          showPopup(response[i].id);
+          map.remove();
+          map = DG.map('map', {
+            center: [54.98, 82.89],
+            zoom: 13
+          });
+          DG.then(drawRegions.bind(this,map));
+          //showPopup(response[i]);
           //alert(response[i].id);
         })
         .addTo(polygons);
@@ -82,15 +92,18 @@ function drawRegions(map) {
   })
 
   request.done(function (response,textStatus,jqXHR) {
-    //console.log(response);
+    console.log(response);
 
     for (let k = 0; k < response.length;k++) {
       for (let i = 0; i < response[k].regions.length;i++) {
         const arr = [];
-        for (let j = 0; j < response[k].regions[i].length;j++) {
+        console.log("here");
+        for (let j = 0; j < response[k].regions[i].points.length;j++) {
+          console.log(response[k].regions[i].points[j]);
           arr.push([response[k].regions[i].points[j].lon,response[k].regions[i].points[j].lat])
         }
-        DG.polygon(arr, {color: calculateRandomColor()})
+        console.log(arr);
+        DG.polygon(arr, {color: response[k].regions[i].color})
           .on('click', function() {
             //alert(response[i].id);
             showPopup(response[k].regions[i].id);
@@ -127,4 +140,19 @@ function showPopup(id) {
   const popup = $(".section-popup");
   popup.removeClass("hidden");
   $("#popup__titleText").text("Участок: " + id);
+
+  request = $.ajax({
+    type:'Get',
+    url:'http://91.223.199.62:8093/api/regions/info/' + id,
+  })
+
+  request.done(function (respond,textStatus,jqXHR) {
+    console.log(respond);
+    $("#lst__first").text("Сорт: " + respond.variety.name);
+    $("#lst__second").text("Особенности сорта: " + respond.variety.description);
+  })
+
+  request.fail(function (textStatus,jqXHR,errorThrown) {
+    console.log(errorThrown);
+  })
 }
