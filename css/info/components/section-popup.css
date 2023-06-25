@@ -107,3 +107,31 @@
   width: inherit;
   height: inherit;
 }
+
+.list__elemPopupTask {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  align-items: center;
+}
+
+.list__textArea {
+  height:150px;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  font-size:25px;
+}
+
+.list__textAreaButton {
+  align-self: center;
+  justify-self: center;
+  height:75px;
+  width: 75%;
+}
+
+.list__textAreaButton:hover {
+  cursor: pointer;
+}
+
+.list__buttonPopup:hover {
+  cursor: pointer;
+}

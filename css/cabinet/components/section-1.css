@@ -23,6 +23,10 @@
   font-size: 25px;
 }
 
+.form__suggestion:hover {
+  cursor: pointer;
+}
+
 .form__container {
   display: flex;
   justify-content: center;
@@ -52,7 +56,8 @@
   width: 100%;
   border: 1px solid #000;
   background: transparent;
-  padding: 20px
+  padding: 20px;
+  font-size:25px;
 }
 
 .form__input::placeholder {
@@ -78,9 +83,42 @@
   border: none;
 }
 
+.form__button:hover {
+  cursor: pointer;
+}
+
 .form__buttonText {
   margin:0;
   color: #FFF;
   font-size: 30px;
   font-weight: bold;
 }
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding:40px;
+  width:40%;
+}
+
+.info__header {
+  font-size: 30px;
+  margin: 0 auto;
+}
+
+.info__paragraph {
+  font-size: 20px;
+  margin: 20px auto 0;
+}
+
+.form__error {
+  font-size: 30px;
+  color: #900020;
+}
+
+.failure {
+  border:3px solid #900020;
+}
+

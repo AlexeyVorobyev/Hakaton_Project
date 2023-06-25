@@ -111,8 +111,8 @@ $(document).ready(function () {
         '          <p class="list__elem" id="lst__second">Особенность сорта:</p>\n' +
         '          <p class="list__elem" id="lst__third">Особенность почвы:</p>\n' +
         '          <div class="list__buttonContainer">'+
-        '          <div class="list__button" id="lst__fourth"><p class="list__button-text">Работники:</p></div>\n' +
-        '          <div class="list__button" id="lst__fifth"><p class="list__button-text">История действий:</p></div>\n' +
+        '          <div class="list__button" id="lst__fourth"><p class="list__button-text">Работники</p></div>\n' +
+        '          <div class="list__button" id="lst__fifth"><p class="list__button-text">История действий</p></div>\n' +
         '          </div>' +
         '        </div>')
       res.attr("id",id);
@@ -209,13 +209,13 @@ $(document).ready(function () {
           '          <div class="list__subElem position"><p class="list__subElemText position"></p></div>\n' +
           '          <div class="list__subElem"><button class="list__buttonPopup"><p class="list__subElemText">"ДОБАВИТЬ ПОРУЧЕНИЕ"</p></button></div>\n' +
           '        </div>')
-        res.children(".name").children(".name").text(response[i].full_name);
+        res.children(".name").children(".name").text(response[i].fullName);
         res.children(".phone").children(".phone").text(response[i].phone);
         res.children(".position").children(".position").text(response[i].roles[0].name);
 
         const field = $('<div class="list__elemPopupTask hidden">\n' +
           '          <textarea class="list__textArea"></textarea>\n' +
-          '          <button class="list__textAreaButton"><p class="list__textAreaButtonText">Отправить</p></button>\n' +
+          '          <button class="list__textAreaButton"><p class="list__subElemText">ОТПРАВИТЬ</p></button>\n' +
           '        </div>')
 
         res.children(".list__subElem").children(".list__buttonPopup").on('click',function () {

@@ -48,15 +48,22 @@
   <div class="container__toHide">
     <div class="form__container">
       <h3 class="form__header">ВХОД В ЛИЧНЫЙ КАБИНЕТ</h3>
+      <h3 class="form__error hidden" id="error">ВВЕДИТЕ КОРРЕКТНЫЕ ДАННЫЕ</h3>
       <form class="form" id="form">
         <input class="form__input" placeholder="Логин" id="name" >
         <input class="form__input" placeholder="Пароль" id="password">
-        <button class="form__button" type="submit" name="subm">
+        <button class="form__button" name="subm">
           <p class="form__buttonText">ВОЙТИ</p>
         </button>
       </form>
     </div>
     <p class="form__suggestion">Забыли пароль? Восстановите его!</p>
+  </div>
+  <div class="info hidden">
+    <h2 class="info__header">Информация о пользователе:</h2>
+    <p class = "info__paragraph" id="info__name"></p>
+    <p class = "info__paragraph" id="info__number"></p>
+    <p class = "info__paragraph" id="info__role"></p>
   </div>
 </section>
 <footer class="footer">
@@ -67,6 +74,7 @@
 <script src="js/JQuery.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
+<script src="js/cabinet.js"></script>
 
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 <script>
