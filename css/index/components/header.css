@@ -40,6 +40,17 @@
   font-weight: 300;
 }
 
+.navigation__link_deactivated {
+  font-size: 20px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 300;
+}
+
+.navigation__link_deactivated:active {
+
+}
+
 .navigation__link:active {
 
 }
