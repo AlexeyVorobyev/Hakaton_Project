@@ -18,13 +18,14 @@
 
 .popup {
   position: relative;
-  background-color: white;
   width: 35%;
   padding: 40px 20px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   height: fit-content;
+  border-radius: 30px;
+  background: #F0F2E6;
 }
 
 .popup__title {
@@ -32,6 +33,7 @@
   font-size: 30px;
   text-decoration-line: underline;
   margin: auto;
+  text-decoration-thickness: 2px;
 }
 
 .list {
@@ -45,14 +47,16 @@
 }
 
 .popup__button {
-  margin: 40px auto auto;
+  margin: 20px auto auto;
   width: 50%;
-  border: 5px solid #CACACB;
+  border-radius: 40px;
+  border: 5px solid rgba(48, 87, 68, 0.66);
 }
 
 .popup__buttonText {
   color: #151B21;
   font-size: 20px;
+  font-weight: bold;
 }
 
 .popup__close {

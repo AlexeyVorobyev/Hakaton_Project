@@ -1,0 +1,86 @@
+.section-1 {
+  padding: 60px 117px 60px;
+  font-family: Inter, sans-serif;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  gap: 25px;
+  background-color: #F0F2E6;
+}
+
+.container__toHide {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form__suggestion {
+  margin-top: 90px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.form__container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 30px;
+  background: rgba(48, 87, 68, 0.21);
+  padding: 50px;
+  width: 40%;
+}
+
+.form__header {
+  font-size: 30px;
+  margin: 0 auto;
+}
+
+.form {
+  margin-top: 64px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.form__input {
+  width: 100%;
+  border: 1px solid #000;
+  background: transparent;
+  padding: 20px
+}
+
+.form__input::placeholder {
+  color: black;
+  font-size: 25px;
+  line-height: 1.2;
+  position: relative;
+  top:3px;
+}
+
+.form__input:nth-child(2) {
+  margin-top: 40px;
+}
+
+.form__button {
+  margin-top: 50px;
+  border-radius: 40px;
+  background: rgba(48, 87, 68, 0.66);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  padding:10px 40px;
+  border: none;
+}
+
+.form__buttonText {
+  margin:0;
+  color: #FFF;
+  font-size: 30px;
+  font-weight: bold;
+}

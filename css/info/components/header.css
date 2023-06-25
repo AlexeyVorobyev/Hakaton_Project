@@ -7,8 +7,8 @@
   height:134px;
   padding:0 70px 0;
   justify-content: space-between;
-  font-family: Inter;
-  background-color: #303048;
+  font-family: Inter,sans-serif;
+  background-color: #3D3058;
 }
 
 .navigation {

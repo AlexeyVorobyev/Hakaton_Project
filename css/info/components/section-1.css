@@ -4,12 +4,14 @@
   display: flex;
   gap: 25px;
   flex-direction: column;
+  background-color: #F0F2E6;
 }
 
 .list__elem {
   text-align: center;
   font-size: 16px;
   font-weight: 400;
+  margin: 10px 0 0;
 }
 
 .regionCard__title {
@@ -17,22 +19,20 @@
   font-size: 20px;
   font-weight: bold;
   margin-top: 75px;
-  text-decoration: underline;
 }
 
 .regionCard__wrapper {
   display: grid;
-  gap:70px;
+  gap:74px;
   grid-template-columns: repeat(3,1fr);
   margin-top: 25px;
 }
 
 .regionCard {
   position: relative;
-  padding: 15px;
-  background-color: #CACACB;
-  border: 3px #555555 solid;
-  border-radius: 10px;
+  padding: 15px 45px 18px;
+  background-color: rgba(48, 87, 68, 0.21);
+  border-radius: 30px;
   margin-top: 75px;
 }
 
@@ -42,11 +42,11 @@
   left:calc(50% - 75px);
   width:150px;
   height:150px;
-  background-color: cornflowerblue;
   border-radius: 30px;
   display: flex;
   box-sizing: border-box;
   overflow: hidden;
+  background-color: #3D3058;
 }
 
 .regionCard__image {
@@ -56,35 +56,78 @@
 
 
 .field__button {
-  border-radius: 10px;
-  border: 3px #555555 solid;
-  background-color: #999999;
   padding:10px;
 }
 
-.list__button:nth-child(2) {
-  margin-top: 10px;
+.field__buttonText {
+  color: #000;
+  font-size: 26px;
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+}
+
+.field__button {
+  display: flex;
+  align-items: center;
+}
+
+.field__iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:20px;
+  height: 20px;
+  margin: 0 0 0 16px;
+  box-sizing: border-box;
+}
+
+.field__icon {
+  width: inherit;
+  height: inherit;
 }
 
 .list__button {
-  width: 75%;
   display: flex;
-  border-radius: 10px;
-  border: 3px #555555 solid;
-  background-color: #999999;
   justify-content: center;
   align-content: end;
-  margin:10px auto;
+  margin:0;
+  border-radius: 40px;
+  border: 2px solid rgba(48, 87, 68, 0.66);
+}
+
+.list__button:hover {
+  background-color: rgba(48, 87, 68, 0.3)
+}
+
+.list__button:nth-child(1) {
+  flex-basis: 35%;
+}
+
+.list__button:nth-child(2) {
+  flex-basis: 65%;
 }
 
 
 .list__button-text {
+  margin:5px;
   line-height: 1;
   text-align: center;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
-.chosen {
-  background-color: #303048;
+.list__buttonContainer {
+  margin-top:20px;
+  display: flex;
+  justify-content: space-between;
+  gap:15px;
+  align-items: center;
+}
+
+.chosen1 {
+  border: 4px solid rgba(48, 87, 68, 0.66);
+}
+
+.chosen2 {
+  border: 4px solid #3D3058;
 }

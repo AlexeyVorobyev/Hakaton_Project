@@ -12,11 +12,11 @@ $(document).ready(function () {
       root.append(createField(response[i]));
     }
     try {
-      if (mail != undefined) {
+      if (sessionStorage.getItem("id") != null) {
         $(".field").each(function() {
-          console.log($(".field"))
-          handler(this,mail);
+          handler(this,sessionStorage.getItem("id"));
         })
+        sessionStorage.clear();
       }
     }
     catch (e) {}
@@ -28,7 +28,10 @@ $(document).ready(function () {
 
   function createField(field) {
     const res = $('<div class="field" >\n' +
-      '    <div class="field__button"><h2 class="field__buttonText">Поле lorem ipsum </h2></div>\n' +
+      '    <div class="field__button">' +
+      '<h2 class="field__buttonText">Поле lorem ipsum </h2>' +
+      '<div class="field__iconContainer"><img class="field__icon" src=""></div>' +
+      '</div>\n' +
       '    <div class="field__container">\n' +
       '      <div class="regionCard__wrapper">\n' +
       '      </div>\n' +
@@ -36,16 +39,27 @@ $(document).ready(function () {
       '  </div>')
     res.attr("id",field.id);
     res.children(".field__button").on('click', handler.bind(this,res))
-    res.children(".field__button").children(".field__buttonText").text("Поле " + field.id);
+    res.children(".field__button").children(".field__buttonText").text("ПОЛЕ " + field.id);
+    res.children(".field__button").children(".field__iconContainer").children(".field__icon").attr("src","img/PolygonClose.png");
+
     //console.log(res);
     return res;
   }
 
   function handler(fieldDom, id = -1) {
-
     fieldDom = $(fieldDom)
     console.log(id);
-    if (fieldDom.hasClass("loaded")) return;
+    if (fieldDom.hasClass("loaded")) {
+      if (fieldDom.children(".field__container").hasClass("hidden")) {
+        fieldDom.children(".field__container").removeClass("hidden");
+        fieldDom.children(".field__button").children(".field__iconContainer").children(".field__icon").attr("src","img/PolygonOpen.png");
+      }
+      else {
+        fieldDom.children(".field__container").addClass("hidden");
+        fieldDom.children(".field__button").children(".field__iconContainer").children(".field__icon").attr("src","img/PolygonClose.png");
+      }
+      return;
+    }
     fieldDom.addClass("loaded");
     request = $.ajax({
       type:'Get',
@@ -53,6 +67,7 @@ $(document).ready(function () {
     })
 
     request.done(async function (response,textStatus,jqXHR) {
+      fieldDom.children(".field__button").children(".field__iconContainer").children(".field__icon").attr("src","img/PolygonOpen.png");
       const root = fieldDom.children(".field__container").children(".regionCard__wrapper");
       console.log(root);
       //console.log(response);
@@ -95,8 +110,10 @@ $(document).ready(function () {
         '          <p class="list__elem" id="lst__first">Сорт:</p>\n' +
         '          <p class="list__elem" id="lst__second">Особенность сорта:</p>\n' +
         '          <p class="list__elem" id="lst__third">Особенность почвы:</p>\n' +
+        '          <div class="list__buttonContainer">'+
         '          <div class="list__button" id="lst__fourth"><p class="list__button-text">Работники:</p></div>\n' +
         '          <div class="list__button" id="lst__fifth"><p class="list__button-text">История действий:</p></div>\n' +
+        '          </div>' +
         '        </div>')
       res.attr("id",id);
       res.children(".regionCard__title").text("Участок " + response.id);
@@ -106,17 +123,22 @@ $(document).ready(function () {
       console.log(response);
       res.children(".regionCard__imageContainer").children(".regionCard__image").attr("src", "http://91.223.199.62:8093/api/resource/" + response.photo.id)
 
-      //res.children("#lst__fourth")....;
-      //res.children("#lst__fifth")....;
-      //TODO РАЗРАБОТАТЬ POPUP ДЛЯ РАБОТНИКИ И ИСТОРИЯ ДЕЙСТВИЙ
-
-      res.children("#lst__fourth").on('click', showPopupWorkers.bind(this,response.id));
-      res.children("#lst__fifth").on('click', showPopupHistory.bind(this,response.id,response.manualWorks));
+      res.children(".list__buttonContainer").children("#lst__fourth").on('click', showPopupWorkers.bind(this,response.id));
+      res.children(".list__buttonContainer").children("#lst__fifth").on('click', showPopupHistory.bind(this,response.id,response.manualWorks));
 
       if (id == checkId) {
-        res.addClass("chosen");
         setTimeout(function() {
-          res.removeClass("chosen");
+          const coords = res.position();
+          scrollBy({
+            top:coords.top,
+            behavior: 'smooth'
+          })
+        },1000)
+        res.addClass("chosen1");
+        res.children(".regionCard__imageContainer").addClass("chosen2");
+        setTimeout(function() {
+          res.removeClass("chosen1");
+          res.children(".regionCard__imageContainer").removeClass("chosen2");
         },10000)
       }
 
@@ -135,7 +157,8 @@ $(document).ready(function () {
   function showPopupHistory(id, manualWorks) {
     const popup = $(".section-popup");
     popup.removeClass("hidden");
-    $("#popup__titleText").text("Участок: " + id);
+    $("#popup__titleTextRegion").text("Участок: " + id);
+    $("#popup__titleTextName").text("История выполненных работ");
 
     const header = $('<div class="list__elemPopup list__elemPopup_history">\n' +
       '          <div class="list__subElem"><p class="list__subElemText workStage">СТАДИЯ РАБОТ</p></div>\n' +
@@ -162,7 +185,8 @@ $(document).ready(function () {
   function showPopupWorkers(id) {
     const popup = $(".section-popup");
     popup.removeClass("hidden");
-    $("#popup__titleText").text("Участок: " + id);
+    $("#popup__titleTextRegion").text("Участок: " + id);
+    $("#popup__titleTextName").text("Назначение работников");
 
     const header = $('<div class="list__elemPopup list__elemPopup_workers">\n' +
       '          <div class="list__subElem"><p class="list__subElemText name">ПОЛНОЕ ИМЯ</p></div>\n' +

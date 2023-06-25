@@ -1,4 +1,4 @@
-
+let wndw;
 //получение api 2gis + инициализация карты
 $.getScript("https://maps.api.2gis.ru/2.0/loader.js?pkg=full")
   .done(() => {
@@ -23,6 +23,8 @@ function start () {
       zoom: 13
     });
     DG.then(drawFields.bind(this,map));
+    $(".button").removeClass("button_clicked");
+    $("#button1").addClass("button_clicked");
   })
 
   $("#button2").on("click", function(event) {
@@ -32,6 +34,8 @@ function start () {
       zoom: 13
     });
     DG.then(drawRegions.bind(this,map));
+    $(".button").removeClass("button_clicked");
+    $("#button2").addClass("button_clicked");
   })
 
   $("#buttonClosePopup").on("click", function () {
@@ -98,8 +102,6 @@ function drawRegions(map) {
   })
 
   request.done(function (response,textStatus,jqXHR) {
-    console.log(response);
-
     for (let k = 0; k < response.length;k++) {
       for (let i = 0; i < response[k].regions.length;i++) {
         const arr = [];
@@ -112,7 +114,13 @@ function drawRegions(map) {
         DG.polygon(arr, {color: response[k].regions[i].color})
           .on('click', function() {
             //alert(response[i].id);
-            showPopup(response[k].regions[i].id);
+            const tmpid = response[k].regions[i].id
+            showPopup(tmpid);
+            $("#popupButton").off("click",function() {
+              const mail = id;
+              let nw = window.open('info.html');
+              nw.mail = mail;
+            })
           })
           .addTo(polygons);
       }
@@ -151,9 +159,17 @@ function showPopup(id) {
   })
 
   $("#popupButton").on("click",function() {
-    const mail = id;
-    var nw = window.open('info.html');
-    nw.mail = mail;
+    /*if (wndw == null) {
+      wndw = window.open('info.html');
+      wndw.mail = id;
+    }
+    else {
+      wndw.open();
+      wndw.mail = id;
+    }*/
+    history.pushState({id:id},'','info.html');
+    sessionStorage.setItem("id",id);
+    location.reload();
   })
 }
 

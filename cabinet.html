@@ -28,16 +28,16 @@
   </div>
   <nav class="navigation">
     <div class="navigation__item">
-      <a class="navigation__link" href="index.html">ГЛАВНАЯ</a>
+      <a class="navigation__link" href="index.html">КАРТА</a>
     </div>
     <div class="navigation__item">
       <a class="navigation__link" href="info.html">ИНФОРМАЦИЯ</a>
     </div>
     <div class="navigation__item">
-      <a class="navigation__link" href="company.html">О КОМПАНИИ</a>
+      <a class="navigation__link" href="#">ПЛАН РАБОТ</a>
     </div>
     <div class="navigation__item">
-      <a class="navigation__link" href="contacts.html">КОНТАКТЫ</a>
+      <a class="navigation__link" href="#">КОНТАКТЫ</a>
     </div>
     <div class="navigation__item">
       <a class="navigation__link navigation__link_active" href="cabinet.html">ЛИЧНЫЙ КАБИНЕТ</a>
@@ -45,7 +45,19 @@
   </nav>
 </header>
 <section class="section-1">
-
+  <div class="container__toHide">
+    <div class="form__container">
+      <h3 class="form__header">ВХОД В ЛИЧНЫЙ КАБИНЕТ</h3>
+      <form class="form" id="form">
+        <input class="form__input" placeholder="Логин" id="name" >
+        <input class="form__input" placeholder="Пароль" id="password">
+        <button class="form__button" type="submit" name="subm">
+          <p class="form__buttonText">ВОЙТИ</p>
+        </button>
+      </form>
+    </div>
+    <p class="form__suggestion">Забыли пароль? Восстановите его!</p>
+  </div>
 </section>
 <footer class="footer">
 
